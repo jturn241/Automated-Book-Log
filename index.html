@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Log</title>
+    <link rel="stylesheet" href="bookObjects.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <script src="bookObjects.js"></script>
+</head>
+<body>
+    <div class="header">
+      Automated Book log
+    </div>
+    <div class="container">
+      <div class="sidebar">
+        <h1>Add a new book below</h1> 
+        <ul>
+          <li><input id="bookName" class="bookInput"> <br>Book Name</li>
+          <li><input id="authorName" class="bookInput"> <br>Book Author</li>
+          <li><input id="pageCount" class="bookInput"> <br>Pages</li>
+          <li><select name="read-status" class="bookInput" id="readStatus">
+              <option value="blank"></option>
+              <option value="Read">Read</option>
+              <option value="Not Read">Not read</option>
+          </select> <br><label for="read-status">Have you read this book?</label></li>
+          <li><button id="bookSubmit" onClick="addBook()">Submit</button></li>
+          <li><button id="clearAll" onClick="clearBookContainer()">Clear All</button></li>
+        </ul>
+      </div>
+      <div id="cards">
+      </div>
+    </div>
+    <div class="footer">
+        Created by jturn241
+        <a class="fib fi-github" href="https://github.com/jturn241" target="_blank">
+            <img class="gitCat" src="GitHub-Mark-32px.png">
+        </a>
+    </div>
+  </body>
+</html>
