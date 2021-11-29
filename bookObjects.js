@@ -14,26 +14,45 @@ function Book(title, author, pages, read){
             bookContainer.removeChild(bookContainer.lastElementChild);
         };
         myLibrary.forEach(function(Book) {
-            const div = document.createElement("div");
+            const bookCard = document.createElement("div");
             const deleteButton = document.createElement("BUTTON");
             const readStatus = document.createElement("BUTTON");
+            const bookInfo = Book.info();
             deleteButton.addEventListener("click", () => {
                 Book.delete();
-            })
-            div.classList.add("card");
+            });
+            readStatus.addEventListener("click", () => {
+                Book.showReadStatus();
+            });
+            bookCard.classList.add("card");
+            if(Book.read === "Read") {
+                bookCard.classList.add("bookRead")
+            } else if(Book.read === "Not Read") {
+                bookCard.classList.add("bookNotRead")
+            };
             deleteButton.innerHTML = "Delete Book";
             readStatus.innerHTML = "Toggle read status";
-            div.innerHTML = Book.info();
-            bookContainer.appendChild(div);
-            div.appendChild(deleteButton);
-            div.appendChild(readStatus);
+            bookCard.innerHTML = bookInfo;
+            bookContainer.appendChild(bookCard);
+            bookCard.appendChild(deleteButton);
+            bookCard.appendChild(readStatus);
         })
     }
     this.delete = function() {
         const toDelete = myLibrary.indexOf(this)
         if(toDelete > -1) {
             myLibrary.splice(toDelete, 1)
-        }
+        };
+        this.showLibrary();
+    }
+    this.showReadStatus = function() {
+        if(read === "Not Read") {
+            this.read = "Read";
+            read = "Read" 
+        } else if (read === "Read") {
+            this.read = "Not Read";
+            read = "Not Read";
+        };
         this.showLibrary();
     }
 }
@@ -42,26 +61,6 @@ function addBookToLibrary (Book) {
     myLibrary.push(Book);
     Book.showLibrary();
 }
-
-const showLibrary = function () {
-    const bookContainer = document.getElementById("cards");
-    while (bookContainer.lastElementChild) {
-        bookContainer.removeChild(bookContainer.lastElementChild);
-    };
-    myLibrary.forEach(function(Book) {
-        const div = document.createElement("div");
-        const deleteButton = document.createElement("BUTTON");
-        const readStatus = document.createElement("BUTTON");
-        div.classList.add("card");
-        deleteButton.innerHTML = "Delete Book";
-        readStatus.innerHTML = "Toggle read status";
-        div.innerHTML = Book.info();
-        bookContainer.appendChild(div);
-        div.appendChild(deleteButton);
-        div.appendChild(readStatus);
-    })
-};
-
 
 const addBook = function () {
     const isEmpty = str => !str.trim().length;
@@ -83,14 +82,15 @@ const addBook = function () {
         }
 };
 
-const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, "not read");
+/*
+const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not Read");
 const book2 = new Book("Lord of the rings", "J.R.R. Tolkien", 305, "not read");
 const book3 = new Book("Great Gastyby", "Gatsby guy", 5000, "not read");
 const book4 = new Book("Rainbow Seven", "Dom Flancy", 700, "read");
 const book5 = new Book("Rainbow Eight", "Dom Flancy", 700, "read");
 const book6 = new Book("Rainbow Nine", "Dom Flancy", 700, "read");
 const book7 = new Book("Rainbow Ten", "Dom Flancy", 700, "read");
-
+*/
 
 const clearBookContainer = function () {
     const bookContainer = document.getElementById("cards");

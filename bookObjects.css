@@ -105,6 +105,14 @@ h1 {
     background-color:tomato;
 }
 
+.bookRead {
+    background-color:yellowgreen;
+}
+
+.bookNotRead {
+    background-color:tomato;
+}
+
 .fi-github {
     color: var(--font);
     font-size: 24px;
